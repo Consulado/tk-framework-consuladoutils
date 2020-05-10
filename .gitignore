@@ -37,6 +37,11 @@ nosetests.xml
 
 # PyCharm project settings
 .idea
+.vscode
+venv
 
 # Max OS X Desktop Services Store files
 .DS_Store
+
+# env
+.env

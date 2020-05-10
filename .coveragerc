@@ -12,7 +12,7 @@
 #
 #
 [run]
-source=.
+source=./python
 omit=tests/*
 
 [report]
