@@ -1,8 +1,8 @@
 import unittest
-from tests import model
+from tests.base_test_class import BaseClass, ContextMock
 
 
-class EntityTests(model.BaseClass):
+class EntityTests(BaseClass):
     @classmethod
     def setUpClass(cls):
         super(EntityTests, cls).setUpClass()
@@ -23,7 +23,7 @@ class EntityTests(model.BaseClass):
     def test_load_data_into_entity(self):
         sg_asset = self._sg.find_one(
             "Asset",
-            [["project", "is", model.ContextMock.project], ["id", "is", self.asset_id]],
+            [["project", "is", ContextMock.project], ["id", "is", self.asset_id]],
             ["code", "id", "project", "description"],
         )
         self.asset = self.shotgun_model.Entity(
@@ -50,7 +50,7 @@ class EntityTests(model.BaseClass):
 
         sg_asset = self._sg.find_one(
             "Asset",
-            [["project", "is", model.ContextMock.project], ["id", "is", self.asset_id]],
+            [["project", "is", ContextMock.project], ["id", "is", self.asset_id]],
             ["code", "id", "project", "description"],
         )
 
@@ -71,7 +71,7 @@ class EntityTests(model.BaseClass):
 
         asset_created = self._sg.find_one(
             "Asset",
-            [["project", "is", model.ContextMock.project], ["code", "is", "NewAsset1"]],
+            [["project", "is", ContextMock.project], ["code", "is", "NewAsset1"]],
             ["code", "id", "project", "description", "sg_asset_type"],
         )
 

@@ -1,8 +1,8 @@
 import unittest
-from tests import model
+from tests.base_test_class import BaseClass
 
 
-class ShotgunGlobalsTest(model.BaseClass):
+class ShotgunGlobalsTest(BaseClass):
     @classmethod
     def setUpClass(cls):
         super(ShotgunGlobalsTest, cls).setUpClass()
