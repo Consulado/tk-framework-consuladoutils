@@ -19,12 +19,12 @@ class EntityIterTests(BaseClass):
         )
 
     def test_load_data(self):
-        self.assets.filter = [
+        self.assets.entity_filter = [
             ["code", "in", ["AssetIter1", "AssetIter2", "AssetIter3"]]
         ]
-        self.assets.load_data()
+        self.assets.load()
 
-        sg_data = self._sg.find("Asset", self.assets.filter, self.return_fields)
+        sg_data = self._sg.find("Asset", self.assets.entity_filter, self.return_fields)
         for asset in self.assets:
             for sg_asset in sg_data:
                 if asset.code != sg_asset.get("code"):
@@ -35,11 +35,11 @@ class EntityIterTests(BaseClass):
                     self.assertEqual(attr, sg_asset.get(field))
 
     def test_len_entities(self):
-        self.assets.filter = [
+        self.assets.entity_filter = [
             ["code", "in", ["AssetIter1", "AssetIter2", "AssetIter3"]]
         ]
-        self.assets.load_data()
-        sg_data = self._sg.find("Asset", self.assets.filter, self.return_fields)
+        self.assets.load()
+        sg_data = self._sg.find("Asset", self.assets.entity_filter, self.return_fields)
         self.assertEqual(len(self.assets), len(sg_data))
 
 

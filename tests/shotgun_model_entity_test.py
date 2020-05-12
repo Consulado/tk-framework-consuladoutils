@@ -30,7 +30,7 @@ class EntityTests(BaseClass):
             "Asset", ["code", "id", "project", "description"], self._context, self._sg
         )
         self.asset.id = self.asset_id
-        self.asset.load_data([["id", "is", self.asset.id]])
+        self.asset.load([["id", "is", self.asset.id]])
 
         self.assertEqual(self.asset.id, self.asset_id)
         self.assertEqual(
@@ -46,7 +46,7 @@ class EntityTests(BaseClass):
         self.asset.id = self.asset_id
         self.asset.description = "new description"
         self.asset.code = "Asset2"
-        self.asset.put()
+        self.asset.update()
 
         sg_asset = self._sg.find_one(
             "Asset",
@@ -67,7 +67,7 @@ class EntityTests(BaseClass):
         self.asset.code = "NewAsset1"
         self.asset.description = "Hey, this is a new asset!"
         self.asset.sg_asset_type = "Character"
-        self.asset.post()
+        self.asset.create()
 
         asset_created = self._sg.find_one(
             "Asset",
