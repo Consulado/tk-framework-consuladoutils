@@ -17,10 +17,6 @@ jobs:
         python-version: [2.7, 3.7]
 
     steps:
-      - env:
-          - SG_HOST: ${{ secrets.SG_HOST }}
-          - SG_SCRIPT_NAME: ${{ secrets.SG_SCRIPT_NAME }}
-          - SG_API_KEY: ${{ secrets.SG_API_KEY }}
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
@@ -40,3 +36,7 @@ jobs:
       - name: Test with unittest
         run: |
           sh run_tests.sh
+        env:
+          - SG_HOST: ${{ secrets.SG_HOST }}
+          - SG_SCRIPT_NAME: ${{ secrets.SG_SCRIPT_NAME }}
+          - SG_API_KEY: ${{ secrets.SG_API_KEY }}
