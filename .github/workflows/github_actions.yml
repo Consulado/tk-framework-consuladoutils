@@ -11,6 +11,7 @@ on:
 
 jobs:
   build:
+    name: Build python package
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -40,3 +41,23 @@ jobs:
           SG_HOST: ${{ secrets.SG_HOST }}
           SG_SCRIPT_NAME: ${{ secrets.SG_SCRIPT_NAME }}
           SG_API_KEY: ${{ secrets.SG_API_KEY }}
+  release:
+    name: Release python pachage
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Create Release
+        id: create_release
+        uses: actions/create_release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          body: |
+            Changes in this release
+            - First Change
+            - Second Change
+          draft: false
+          prerelease: false
