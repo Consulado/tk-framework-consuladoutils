@@ -47,11 +47,9 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2.1.1
-      - name: Gzip
+      - name: Creating a source distribution
         run: |
-          mkdir openwrt-img-${{ github.run_id }}
-          cp -rf /home/runner/work/openwrt-cc/openwrt-cc/openwrt/bin/targets/x86/64/openwrt-x86-64-combined-squashfs.img.gz openwrt-img-${{ github.run_id }}
-          tar -czvf openwrt-img-${{ github.run_id }}.tar.gz openwrt-img-${{ github.run_id }}
+          python setup.py sdist --format=gztar,zip
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -72,7 +70,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps
-          asset_path: /home/runner/work/openwrt-cc/openwrt-cc/openwrt-img-${{ github.run_id }}.tar.gz
-          asset_name: openwrt-img-${{ github.run_id }}.tar.gz
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: /home/runner/work/consulado/tk-framework-consuladoutils/dist/tk-framework-consuladoutils-${{ github.run_id }}.tar.gz
+          asset_name: tk-framework-consuladoutils-${{ github.run_id }}.tar.gz
           asset_content_type: application/zip

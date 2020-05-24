@@ -1,3 +1,4 @@
 coverage
 git+git://github.com/shotgunsoftware/python-api.git
 pre-commit
+setuptools

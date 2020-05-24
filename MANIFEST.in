@@ -1,0 +1,3 @@
+include info.yml
+include icon_256.png
+recursive-include data *
