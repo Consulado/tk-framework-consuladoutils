@@ -1,11 +1,12 @@
 import setuptools
+from version import get_git_version
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="tk-framework-consuladoutils",
-    version="0.1.0",
+    version=get_git_version().decode("ASCII"),
     scripts=["tk-framework-consuladoutils"],
     author="Gabriel Valderramos",
     author_email="gabrielvalderramos@gmail.com",

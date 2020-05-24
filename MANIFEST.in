@@ -1,3 +1,5 @@
 include info.yml
 include icon_256.png
+include RELEASE-VERSION
+include version.py
 recursive-include data *
