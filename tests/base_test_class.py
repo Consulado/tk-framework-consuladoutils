@@ -20,8 +20,8 @@ class BaseClass(unittest.TestCase):
         cls._context = ContextMock()
         cls._sg = Shotgun(
             os.getenv("SG_HOST"),
-            login=os.getenv("SG_USER"),
-            password=os.getenv("SG_PWD"),
+            script_name=os.getenv("SG_SCRIPT_NAME"),
+            api_key=os.getenv("SG_API_KEY"),
         )
         cls.shotgun_model = shotgun_model
         cls.shotgun_globals = shotgun_globals
