@@ -37,6 +37,6 @@ jobs:
         run: |
           sh run_tests.sh
         env:
-          - SG_HOST: ${{ secrets.SG_HOST }}
-          - SG_SCRIPT_NAME: ${{ secrets.SG_SCRIPT_NAME }}
-          - SG_API_KEY: ${{ secrets.SG_API_KEY }}
+          SG_HOST: ${{ secrets.SG_HOST }}
+          SG_SCRIPT_NAME: ${{ secrets.SG_SCRIPT_NAME }}
+          SG_API_KEY: ${{ secrets.SG_API_KEY }}
