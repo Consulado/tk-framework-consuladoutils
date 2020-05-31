@@ -68,6 +68,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: /home/runner/work/consulado/tk-framework-consuladoutils/dist/tk-framework-consuladoutils-0.1.0.tar.gz
-          asset_name: tk-framework-consuladoutils-0.1.0.tar.gz
+          asset_path: /home/runner/work/consulado/tk-framework-consuladoutils/dist/tk-framework-consuladoutils-v0.1.2.tar.gz
+          asset_name: tk-framework-consuladoutils-v0.1.2.tar.gz
           asset_content_type: application/zip
