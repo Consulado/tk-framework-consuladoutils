@@ -62,8 +62,8 @@ jobs:
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          python setup.py sdist --format=gztar,zip
+        # run: |
+        #   python setup.py sdist --format=gztar,zip
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: /home/runner/work/consulado/tk-framework-consuladoutils/dist/tk-framework-consuladoutils-0.1.0.tar.gz
