@@ -118,6 +118,8 @@ class Entity(EntityModel):
             del data["id"]
         else:
             return {}
+        if data.get("type"):
+            del data["type"]
 
         return self.add_sg_data(
             self._sg.update(
@@ -144,6 +146,8 @@ class Entity(EntityModel):
 
         if data.get("id"):
             del data["id"]
+        if data.get("type"):
+            del data["type"]
 
         return self.add_sg_data(self._sg.create(self._entity_type, data, return_fields))
 

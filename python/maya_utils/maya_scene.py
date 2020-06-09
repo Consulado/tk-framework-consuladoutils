@@ -34,10 +34,28 @@ class MayaScene(MayaBaseClass):
 
     def __iter__(self):
         for asset in self._assets:
+            if asset is None:
+                continue
             yield asset
 
     def __len__(self):
-        return len(self._assets)
+        return len([i for i in self._assets if i is not None])
+
+    def non_default_cameras(self):
+        # Get all cameras first
+        cameras = self.pm.ls(type=("camera"), l=True)
+
+        # Let's filter all startup / default cameras
+        startup_cameras = [
+            camera
+            for camera in cameras
+            if self.pm.camera(camera.parent(0), startupCamera=True, q=True)
+        ]
+
+        non_default_cameras = list(set(cameras) - set(startup_cameras))
+
+        for camera in map(lambda x: x.parent(0), non_default_cameras):
+            yield camera
 
     def find_asset(self, namespace=None):
         if namespace:
@@ -77,10 +95,12 @@ class MayaAsset(MayaBaseClass):
 
     def __iter__(self):
         for geo in self._geometry_list:
+            if geo is None:
+                continue
             yield geo
 
     def __len__(self):
-        return len(self._geometry_list)
+        return len([i for i in self._geometry_list if i is not None])
 
     @property
     def is_reference(self):
