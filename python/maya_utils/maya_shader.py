@@ -53,6 +53,10 @@ class ShaderIter(BaseShader):
 
     def __enter__(self):
         self.fetch()
+        if self.local_data:
+            files_err = [path for path in self.local_data if not os.path.isfile(path)]
+            for path in files_err:
+                del self.local_data[path]
         return self
 
     def __exit__(self, *args, **kwargs):
